@@ -1,7 +1,9 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const PORT = 5000;
 const router = require("./router/auth-router");
+const connectDB = require("./Utils/db");
 
 app.use(express.json()); // Middleware - This will parse the incoming request body
 
@@ -20,6 +22,8 @@ app.get("/register", (req, res) => {
   res.status(200).send("Welcome to Registration Page!");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is Running on port ${PORT}`);
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server is Running on port ${PORT}`);
+  });
 });
