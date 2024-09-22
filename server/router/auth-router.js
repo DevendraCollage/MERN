@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { home, register } = require("../Controllers/auth-controller");
+const { home, register, login } = require("../Controllers/auth-controller");
 
 // You can make route like this type-1
 // router.get("/", (req, res) => {
@@ -9,7 +9,7 @@ const { home, register } = require("../Controllers/auth-controller");
 
 // You can make route like this type-2
 router.route("/").get(home);
-
-router.route("/login").post(register);
+router.route("/register").post(register);
+router.route("/login").post(login);
 
 module.exports = router;
