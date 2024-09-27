@@ -1,3 +1,5 @@
+import errorMiddleware from "./Middlewares/error-middleware";
+
 require("dotenv").config();
 const express = require("express");
 const app = express();
@@ -9,6 +11,8 @@ app.use(express.json()); // Middleware - This will parse the incoming request bo
 
 // Mount the Router : To use the router in your main Express app, you can "mount" it at a specific URL prefix
 app.use("/api/auth", router);
+
+app.use(errorMiddleware);
 
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to Server Side!");
